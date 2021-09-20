@@ -1,0 +1,4 @@
+/WebApp/*.json
+.idea
+bin
+obj

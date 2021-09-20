@@ -17,8 +17,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Pages" />
-      <Folder Include="Shared" />
+      <UpToDateCheckInput Remove="Pages\_Host.cshtml" />
+      <UpToDateCheckInput Remove="Pages\Counter.razor" />
+      <UpToDateCheckInput Remove="Pages\FetchData.razor" />
+      <UpToDateCheckInput Remove="Pages\Index.razor" />
     </ItemGroup>
 
 </Project>

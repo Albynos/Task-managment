@@ -1,0 +1,37 @@
+@using BlazorTaskManager.Model
+
+<div>
+    @if (TasksModels == null || !TasksModels.Any())
+    {
+        <span>There are no tasks</span>
+    }
+    else
+    {
+        <ul>
+            @foreach(var task in TasksModels){
+                  <li nav-item px-3>
+                      <h4>@task.Name</h4>
+                      <p>@task.Content</p>
+                      <p>Status: <input type="checkbox"/></p>
+                  </li>
+            }
+        </ul>
+    }
+</div>
+
+@code {
+
+    public static IEnumerable<TaskModel> TasksModels { get; set; } = GetTasks();
+
+    private static IEnumerable<TaskModel> GetTasks()
+    {
+        //TODO replace it by api
+        return new List<TaskModel>
+        {
+            new TaskModel("Test", "description"),
+            new TaskModel("Test1", "description1"),
+            new TaskModel("Test2", "description2"),
+
+        };
+    }
+}

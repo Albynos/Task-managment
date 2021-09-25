@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using WebApi.Middleware;
 
 namespace WebApi
 {
@@ -55,8 +56,8 @@ namespace WebApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi v1"));
             }
 
+            app.UseCustomExceptionsHandler();
             app.UseHttpsRedirection();
-
             app.UseRouting();
             app.UseHttpsRedirection();
             app.UseCors("AllowAll");

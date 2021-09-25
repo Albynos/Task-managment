@@ -1,33 +1,19 @@
 ﻿using System;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Application.Commands;
 using Application.Dto;
 using Application.Queries;
 using Application.ViewModels;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace WebApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class TaskController : ControllerBase
+    public class TaskController : BaseApiController
     {
-        private readonly ILogger<TaskController> _logger;
-        private IMediator _mediator;
-        private IMediator Mediator => _mediator ??=HttpContext.RequestServices.GetService<IMediator>();
-
-        internal Guid UserId => !User.Identity.IsAuthenticated
-            ? Guid.Empty
-            : Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-
-        public TaskController(ILogger<TaskController> logger)
-        {
-            _logger = logger;
-        }
+        public TaskController(ILogger<TaskController> logger) : base(logger) { }
 
         [HttpGet]
         public async Task<ActionResult<GetAllTasksVm>> Get()
@@ -56,6 +42,14 @@ namespace WebApi.Controllers
             };
             var result = await Mediator.Send(command);
             return Ok(result);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(Guid id)
+        {
+            var command = new DeleteTaskCommand {Id = id, UserId = UserId};
+            await Mediator.Send(command);
+            return NoContent();
         }
     }
 }

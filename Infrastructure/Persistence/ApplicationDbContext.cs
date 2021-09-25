@@ -1,16 +1,23 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using Application.Interfaces;
 using Domain.Entities;
-using Domain.Enums;
 using Microsoft.EntityFrameworkCore;
+using TaskStatus = Domain.Enums.TaskStatus;
 
 namespace Infrastructure.Persistence
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
         public ApplicationDbContext(DbContextOptions options) : base(options) { }
 
         public DbSet<TaskItem> TaskItems { get; set; }
+        public async Task SaveChangesAsync(CancellationToken cancellationToken)
+        { 
+            await base.SaveChangesAsync(cancellationToken);
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -32,7 +32,8 @@ namespace Application.Queries
                         cancellationToken: cancellationToken);
                 if (result == null)
                 {
-                    throw new NullReferenceException();
+                    //TODO replace it by custom exception
+                    throw new NullReferenceException($"task {request.Id} not found");
                 }
                 
                 return _mapper.Map<GetTaskDto>(result);

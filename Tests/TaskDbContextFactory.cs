@@ -32,6 +32,15 @@ namespace Tests
                 },
                 new TaskItem
                 {
+                    Id = Guid.NewGuid(),
+                    UserId = FirstUserId,
+                    Title = "Test Name3",
+                    Description = "Test Desc3",
+                    Status = TaskStatus.Undone,
+                    CreationDate = DateTime.Now,
+                },
+                new TaskItem
+                {
                     Id = SecondTaskId,
                     UserId = SecondUserId,
                     Title = "Test Name 2",

@@ -3,7 +3,7 @@ using Application;
 using AutoMapper;
 using Infrastructure.Persistence;
 
-namespace Tests
+namespace Tests.Queries
 {
     public class TestQueryBase : IDisposable
     {

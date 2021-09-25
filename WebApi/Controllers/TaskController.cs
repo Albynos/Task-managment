@@ -51,5 +51,20 @@ namespace WebApi.Controllers
             await Mediator.Send(command);
             return NoContent();
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Update([FromBody]UpdateTaskDto updateTaskDto, Guid id)
+        {
+            var command = new UpdateTaskCommand
+            {
+                Id = id,
+                UserId = UserId,
+                Description = updateTaskDto.Description,
+                Status = updateTaskDto.Status,
+                Title = updateTaskDto.Title,
+            };
+            await Mediator.Send(command);
+            return NoContent();
+        }
     }
 }

@@ -1,13 +1,16 @@
-using System.Runtime.InteropServices;
+using System.Reflection;
+using Application;
+using Infrastructure;
+using Infrastructure.Persistence;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Server.Services;
 
-namespace Server
+namespace WebApi
 {
     public class Startup
     {
@@ -21,9 +24,26 @@ namespace Server
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper(cfg =>
+            {
+                cfg.AddProfile(new ApplyMappingProfile(typeof(ApplyMappingProfile).Assembly));
+            });
+
+            services.AddApplication();
+            services.AddPersistence(Configuration);
+            services.AddCors(opt =>
+            {
+                opt.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyHeader();
+                    policy.AllowAnyMethod();
+                    policy.AllowAnyOrigin();
+                });
+            });
             services.AddControllers();
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "Server", Version = "v1"}); });
-            services.AddSingleton<ITaskService,TaskService>();
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "WebApi", Version = "v1"}); });
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,12 +53,14 @@ namespace Server
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Server v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi v1"));
             }
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseHttpsRedirection();
+            app.UseCors("AllowAll");
 
             app.UseAuthorization();
 

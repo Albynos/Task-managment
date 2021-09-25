@@ -6,3 +6,4 @@ Server/appsettings.Development.json
 Server/appsettings.json
 test
 Server/Properties/launchSettings.json
+*.db

@@ -1,3 +1,4 @@
+using Application.Interfaces;
 using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -14,7 +15,7 @@ namespace Infrastructure
             {
                 opt.UseSqlite(connectionString);
             });
-            services.AddScoped<ApplicationDbContext>();
+            services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
             return services;
         }
     }

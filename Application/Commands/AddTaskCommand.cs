@@ -1,8 +1,8 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Application.Interfaces;
 using Domain.Entities;
-using Infrastructure.Persistence;
 using MediatR;
 using TaskStatus = Domain.Enums.TaskStatus;
 
@@ -16,9 +16,9 @@ namespace Application.Commands
 
         public class AddTaskHandler : IRequestHandler<AddTaskCommand, Guid>
         {
-            private readonly ApplicationDbContext _applicationDbContext;
-            
-            public AddTaskHandler(ApplicationDbContext applicationDbContext)
+            private readonly IApplicationDbContext _applicationDbContext;
+
+            public AddTaskHandler(IApplicationDbContext applicationDbContext)
             {
                 _applicationDbContext = applicationDbContext;
             }

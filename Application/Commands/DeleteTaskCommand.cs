@@ -2,10 +2,6 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Interfaces;
-using Application.Queries;
-using AutoMapper;
-using Domain.Entities;
-using Infrastructure.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

@@ -1,6 +1,5 @@
 using System;
 using Infrastructure.Persistence;
-using NUnit.Framework;
 
 namespace Tests.Commands
 {

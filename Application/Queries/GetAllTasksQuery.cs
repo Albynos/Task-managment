@@ -3,10 +3,10 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Dto;
+using Application.Interfaces;
 using Application.ViewModels;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Infrastructure.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,10 +18,10 @@ namespace Application.Queries
 
         public class GetAllTasksHandler : IRequestHandler<GetAllTasksQuery, GetAllTasksVm>
         {
-            private readonly ApplicationDbContext _applicationDbContext;
+            private readonly IApplicationDbContext _applicationDbContext;
             private readonly IMapper _mapper;
             
-            public GetAllTasksHandler(ApplicationDbContext applicationDbContext, IMapper mapper)
+            public GetAllTasksHandler(IApplicationDbContext applicationDbContext, IMapper mapper)
             {
                 _applicationDbContext = applicationDbContext;
                 _mapper = mapper;

@@ -2,8 +2,8 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Dto;
+using Application.Interfaces;
 using AutoMapper;
-using Infrastructure.Persistence;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,9 +17,9 @@ namespace Application.Queries
         public class GetTaskHandler : IRequestHandler<GetTaskQuery, GetTaskDto>
         {
             private readonly IMapper _mapper;
-            private readonly ApplicationDbContext _applicationDbContext;
+            private readonly IApplicationDbContext _applicationDbContext;
 
-            public GetTaskHandler(IMapper mapper, ApplicationDbContext applicationDbContext)
+            public GetTaskHandler(IMapper mapper, IApplicationDbContext applicationDbContext)
             {
                 _mapper = mapper;
                 _applicationDbContext = applicationDbContext;

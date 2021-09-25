@@ -1,7 +1,6 @@
 using System.Reflection;
 using Application;
 using Infrastructure;
-using Infrastructure.Persistence;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

@@ -7,11 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Commands
 {
-    public class DeleteTaskCommand : IRequest
-    { 
-        public Guid Id { get; set; }
-        public Guid UserId { get; set; }
-
+    public record DeleteTaskCommand(Guid UserId, Guid Id) : IRequest
+    {
         public class DeleteTaskHandler : IRequestHandler<DeleteTaskCommand>
         {
             private readonly IApplicationDbContext _applicationDbContext;

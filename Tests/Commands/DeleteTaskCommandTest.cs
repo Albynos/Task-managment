@@ -43,13 +43,10 @@ namespace Tests.Commands
             await result.Should().ThrowAsync<NullReferenceException>();
         }
 
-        private Func<Task> Handle(Guid id, Guid UserId)
+        private Func<Task> Handle(Guid id, Guid userId)
         {
             async Task Result() => 
-                await _handler.Handle(new DeleteTaskCommand
-                {
-                    Id = id, UserId = UserId
-                }, CancellationToken.None);
+                await _handler.Handle(new DeleteTaskCommand(userId, id), CancellationToken.None);
 
             return Result;
         }

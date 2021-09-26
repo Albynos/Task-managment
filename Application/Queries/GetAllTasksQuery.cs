@@ -12,10 +12,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Queries
 {
-    public class GetAllTasksQuery : IRequest<GetAllTasksVm>
+    public record GetAllTasksQuery(Guid UserId) : IRequest<GetAllTasksVm>
     {
-        public Guid UserId { get; set; }
-
         public class GetAllTasksHandler : IRequestHandler<GetAllTasksQuery, GetAllTasksVm>
         {
             private readonly IApplicationDbContext _applicationDbContext;

@@ -8,14 +8,8 @@ using TaskStatus = Domain.Enums.TaskStatus;
 
 namespace Application.Commands
 {
-    public class UpdateTaskCommand : IRequest
+    public record UpdateTaskCommand(Guid UserId, Guid Id, string Title, string Description, TaskStatus Status) : IRequest
     {
-        public Guid UserId { get; set; }
-        public Guid Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public TaskStatus Status { get; set; }
-
         public class UpdateTaskHandle : IRequestHandler<UpdateTaskCommand>
         {
             private readonly IApplicationDbContext _applicationDbContext;

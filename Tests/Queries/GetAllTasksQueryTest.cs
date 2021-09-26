@@ -23,10 +23,8 @@ namespace Tests.Queries
         [Test]
         public async Task Handle_ShouldGetAllTasks_WhenCorrectUserId()
         {
-            var result = await _handler.Handle(new GetAllTasksQuery
-            {
-                UserId = TaskDbContextFactory.FirstUserId,
-            }, CancellationToken.None);
+            var result = await _handler.Handle(
+                new GetAllTasksQuery(TaskDbContextFactory.FirstUserId), CancellationToken.None);
 
             result.Tasks.Should().NotBeNull();
             result.Tasks.Should().HaveCount(2);
@@ -35,10 +33,8 @@ namespace Tests.Queries
         [Test]
         public async Task Handle_ShouldBeEmpty_WhenUnknownUserId()
         {
-            var result = await _handler.Handle(new GetAllTasksQuery
-            {
-                UserId = Guid.NewGuid()
-            }, CancellationToken.None);
+            var result = await _handler.Handle(
+                new GetAllTasksQuery(Guid.NewGuid()), CancellationToken.None);
 
             result.Tasks.Should().BeEmpty();
         }

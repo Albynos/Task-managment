@@ -22,10 +22,9 @@ namespace Tests.Queries
         [Test]
         public async Task Handle_ShouldGetTask_WhenCorrectDate()
         { 
-            var result = await _handler.Handle(new GetTaskQuery
-            {
-                Id = TaskDbContextFactory.FirstTaskId, UserId = TaskDbContextFactory.FirstUserId,
-            }, CancellationToken.None);
+            var result = await _handler.Handle(
+                new GetTaskQuery (TaskDbContextFactory.FirstUserId, TaskDbContextFactory.FirstTaskId), 
+                CancellationToken.None);
             ;
             result.Should().NotBeNull();
             result.Id.Should().Be(TaskDbContextFactory.FirstTaskId);
@@ -34,20 +33,18 @@ namespace Tests.Queries
         [Test]
         public async Task Handle_ShouldThrowAnException_WhenUnknownTaskId()
         {
-            Func<Task> result = async () => await _handler.Handle(new GetTaskQuery
-            {
-                Id = Guid.NewGuid(), UserId = TaskDbContextFactory.FirstUserId
-            }, CancellationToken.None);
+            Func<Task> result = async () => await _handler.Handle(
+                new GetTaskQuery(Guid.NewGuid(),TaskDbContextFactory.FirstUserId), 
+                CancellationToken.None);
             await result.Should().ThrowAsync<NullReferenceException>();
         }
         
         [Test]
         public async Task Handle_ShouldThrowAnException_WhenUnknownUserId()
         {
-            Func<Task> result = async () => await _handler.Handle(new GetTaskQuery
-            {
-                Id = TaskDbContextFactory.FirstUserId, UserId = Guid.NewGuid()
-            }, CancellationToken.None);
+            Func<Task> result = async () => await _handler.Handle(
+                new GetTaskQuery(TaskDbContextFactory.FirstUserId,Guid.NewGuid()), 
+                CancellationToken.None);
             await result.Should().ThrowAsync<NullReferenceException>();
         }
     }

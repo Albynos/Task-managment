@@ -9,11 +9,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Application.Queries
 {
-    public class GetTaskQuery : IRequest<GetTaskDto>
+    public record GetTaskQuery(Guid UserId, Guid Id) : IRequest<GetTaskDto>
     {
-        public Guid Id { get; set; }
-        public Guid UserId { get; set; }
-
         public class GetTaskHandler : IRequestHandler<GetTaskQuery, GetTaskDto>
         {
             private readonly IMapper _mapper;

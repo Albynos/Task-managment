@@ -27,14 +27,13 @@ namespace Tests.Commands
             const string newTitle = "new title";
             const TaskStatus newStatus = TaskStatus.Done;
 
-            await _handler.Handle(new UpdateTaskCommand
-            {
-                Description = newDescription,
-                Id = TaskDbContextFactory.FirstTaskId,
-                Status = newStatus,
-                Title = newTitle,
-                UserId = TaskDbContextFactory.FirstUserId,
-            }, CancellationToken.None);
+            await _handler.Handle(
+                new UpdateTaskCommand(
+                    TaskDbContextFactory.FirstUserId,
+                    TaskDbContextFactory.FirstTaskId,
+                    newTitle,
+                    newDescription,
+                    newStatus), CancellationToken.None);
 
             var taskItem = await Context.TaskItems.SingleOrDefaultAsync(task => task.Id == TaskDbContextFactory.FirstTaskId);
             
@@ -47,11 +46,9 @@ namespace Tests.Commands
         [Test]
         public async Task Handle_ShouldThrowAnException_WhenUnknownTaskId()
         {
-            Func<Task> result = async () => await _handler.Handle(new UpdateTaskCommand
-            {
-                Id = Guid.NewGuid(),
-                UserId = TaskDbContextFactory.FirstUserId,
-            }, CancellationToken.None);
+            Func<Task> result = async () => await _handler.Handle(
+                new UpdateTaskCommand(TaskDbContextFactory.FirstUserId, Guid.NewGuid(), "","", TaskStatus.Undone),
+                CancellationToken.None);
 
             await result.Should().ThrowAsync<NullReferenceException>();
         }
@@ -59,11 +56,9 @@ namespace Tests.Commands
         [Test]
         public async Task Handle_ShouldThrowAnException_WhenUnknownUserId()
         {
-            Func<Task> result = async () => await _handler.Handle(new UpdateTaskCommand
-            {
-                Id = TaskDbContextFactory.FirstTaskId,
-                UserId = Guid.NewGuid(),
-            }, CancellationToken.None);
+            Func<Task> result = async () => await _handler.Handle(
+                new UpdateTaskCommand(Guid.NewGuid(), TaskDbContextFactory.FirstTaskId, "","", TaskStatus.Undone),
+                CancellationToken.None);
 
             await result.Should().ThrowAsync<NullReferenceException>();
         }

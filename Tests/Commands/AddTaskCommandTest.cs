@@ -25,12 +25,9 @@ namespace Tests.Commands
         {
             const string description = "Task description from test";
             const string title = "task title from test";
-            var creationTaskGuid = await _handler.Handle(new AddTaskCommand
-            {
-                UserId = TaskDbContextFactory.FirstTaskId,
-                Description = description,
-                Title = title,
-            }, CancellationToken.None); 
+            var creationTaskGuid = await _handler.Handle(
+                new AddTaskCommand(TaskDbContextFactory.FirstTaskId,description,title),
+                CancellationToken.None); 
             
             var result = await Context.TaskItems
                 .SingleOrDefaultAsync(task => task.Id == creationTaskGuid);

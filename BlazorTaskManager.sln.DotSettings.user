@@ -1,0 +1,19 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c4eaf28f_002D0d48_002D4f20_002Db645_002D131c8eb7f123/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="ShouldDeleteTaskItemFromDb" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::6536D4CC-D91C-4C0C-AB4B-6B307B4269BC::net5.0::Tests.Commands.DeleteTaskCommandTest.Handle_ShouldThrowAnException_WhenUnknownIdOfItem&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::6536D4CC-D91C-4C0C-AB4B-6B307B4269BC::net5.0::Tests.Commands.DeleteTaskCommandTest.Handle_ShouldDeleteTaskItem_WithCorrectData&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::6536D4CC-D91C-4C0C-AB4B-6B307B4269BC::net5.0::Tests.Commands.DeleteTaskCommandTest.Handle_ShouldThrowAnException_WhenUnknownUserId&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::6536D4CC-D91C-4C0C-AB4B-6B307B4269BC::net5.0::Tests.Commands.DeleteTaskCommandTest.Handle_ShouldThrowAnException_WhenUnknownTaskId&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::6536D4CC-D91C-4C0C-AB4B-6B307B4269BC::net5.0::Tests.Commands.AddTaskCommandTest.Handle_ShouldAddNewTask_WhenCorrectData&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::6536D4CC-D91C-4C0C-AB4B-6B307B4269BC::net5.0::Tests.Queries.GetTaskQueryTest.Handle_ShouldGetTask_WhenCorrectDate&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::6536D4CC-D91C-4C0C-AB4B-6B307B4269BC::net5.0::Tests.Queries.GetTaskQueryTest.Handle_ShouldThrowAnException_WhenUnknownTaskId&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::6536D4CC-D91C-4C0C-AB4B-6B307B4269BC::net5.0::Tests.Queries.GetTaskQueryTest.Handle_ShouldThrowAnException_WhenUnknownUserId&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::6536D4CC-D91C-4C0C-AB4B-6B307B4269BC::net5.0::Tests.Queries.GetAllTasksQueryTest.Handle_ShouldGetAllTasks_WhenCorrectUserId&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::6536D4CC-D91C-4C0C-AB4B-6B307B4269BC::net5.0::Tests.Queries.GetAllTasksQueryTest.Handle_ShouldBeNull_WhenUnknownUserId&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::6536D4CC-D91C-4C0C-AB4B-6B307B4269BC::net5.0::Tests.Commands.UpdateTaskCommandTest.Handle_ShouldUpdateTask_WhenCorrectTaskIdAndUserId&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::6536D4CC-D91C-4C0C-AB4B-6B307B4269BC::net5.0::Tests.Commands.UpdateTaskCommandTest&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::6536D4CC-D91C-4C0C-AB4B-6B307B4269BC::net5.0::Tests.Queries.GetAllTasksQueryTest&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::6536D4CC-D91C-4C0C-AB4B-6B307B4269BC::net5.0::Tests.Queries.GetTaskQueryTest&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
